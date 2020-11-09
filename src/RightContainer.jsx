@@ -18,8 +18,9 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
-        maxWidth: 360,
+
+        //width: '100%',
+        //maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
     },
 }));
@@ -96,23 +97,22 @@ function LeftContainer(props) {
 
 
     return (
-        <Grid direction="column" container justify={selectedItems.length > 0 ? "" : "center"} alignItems="center" style={{ width: "30%", height: "92vh", overflow: "scroll", backgroundColor: "white" }}>
+        <div style={{ width: "35%", height: "75%", overflow: "scroll", backgroundColor: "white" }}>
 
 
 
             {selectedItems.length > 0 ?
 
                 selectedItems.map((iten, idx) => {
-                    return <Grid direction="column" key={`item${idx}`} justify="center" alignItems="center" container style={{ backgroundColor: "white" }} >
-                        <Typography align="left" style={{ width: "90%" }} > {iten.categoryName} </Typography>
-
-                        <List className={classes.root}>
+                    return <Grid direction="column" key={`item${idx}`} style={{ backgroundColor: "white", padding: 10 }} >
+                        <Typography style={{ marginLeft: 15, fontWeight: "400" }} align="left" > {iten.categoryName} </Typography>
+                        <List style={{ padding: 5, margin: 0, marginLeft: 10 }} className={classes.root}>
                             {iten.category_itmes.map((value, subIdx) => {
                                 const labelId = value.name
 
                                 return (
                                     <ListItem style={{ backgroundColor: "#e5e5e5", marginBottom: 10 }} key={value} role={undefined} dense button >
-                                        <ListItemText id={labelId} primary={labelId} />
+                                        <ListItemText style={{ color: "#989898" }} id={labelId} primary={labelId} />
 
                                         <ListItemSecondaryAction>
                                             <IconButton onClick={() => handleChange(iten._id, value._id)} edge="end" aria-label="comments">
@@ -131,13 +131,13 @@ function LeftContainer(props) {
 
                 })
 
-                : <Grid justify="center" alignItems="center" container  >
+                : <Grid container style={{ height: "100%" }} justify="center" alignItems="center" container  >
 
-                    <Typography>No value Selected</Typography>
+                    <Typography style={{ color: "#989898" }}>No value Selected</Typography>
                 </Grid>}
 
 
-        </Grid >
+        </div >
     )
 }
 

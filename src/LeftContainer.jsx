@@ -36,11 +36,54 @@ function LeftContainer(props) {
 
 
     return (
-        <Grid direction="column" container justify="center" alignItems="center" style={{ width: "30%", marginRight: 20, minHeight: "70vh", overflow: "scroll", backgroundColor: "white" }}>
+        <Grid direction="column" style={{ width: "35%", maxHeight: "75%", overflow: "scroll", backgroundColor: "green", padding: 0, marginRight: 10 }}>
+
+
+
 
 
 
             {Array.isArray(props.categories) ?
+                props.categories.map((iten, idx) => {
+                    return <Grid direction="column" key={`item${idx}`} style={{ backgroundColor: "white", padding: 10 }} >
+                        <Typography style={{ marginLeft: 20, fontWeight: "400" }} align="left" > {iten.categoryName} </Typography>
+
+
+                        {iten.category_itmes.map((value, subIdx) => {
+                            const labelId = value.name
+
+                            return (
+                                <ListItem style={{ padding: 0, margin: 0, marginLeft: 20 }} key={value} role={undefined} dense button onClick={() => handleChange(idx, subIdx, !value.selected)}>
+                                    <ListItemIcon>
+                                        <Checkbox
+
+                                            edge="start"
+                                            checked={value.selected}
+                                            tabIndex={-1}
+                                            disableRipple
+                                            inputProps={{ 'aria-labelledby': labelId }}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText id={labelId} style={{ color: "#989898", margin: 0 }} primary={labelId} />
+                                </ListItem>
+                            );
+                        })}
+
+
+
+                        {/* <List className={classes.root}>
+                            
+                        </List> */}
+
+
+                    </Grid>
+
+
+                })
+
+                : null}
+
+            {/* {Array.isArray(props.categories) ?
                 props.categories.map((iten, idx) => {
                     return <Grid direction="column" key={`item${idx}`} justify="center" alignItems="center" container style={{ backgroundColor: "white" }} >
                         <Typography align="left" style={{ width: "90%" }} > {iten.categoryName} </Typography>
@@ -72,7 +115,7 @@ function LeftContainer(props) {
 
                 })
 
-                : null}
+                : null} */}
 
 
         </Grid >
